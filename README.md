@@ -1,2 +1,3 @@
-# levelling_platform
-Software for the levelling plattform of the laser scanner
+# FRANCOR - Levelling Plattform for Laser Scanner
+
+Firmware for the levelling platform.
