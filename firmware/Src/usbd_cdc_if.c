@@ -303,6 +303,9 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
     return (USBD_OK);
   }
 
+  /* Toggle board LED to show RX */
+  HAL_GPIO_TogglePin(BOARD_LED_GPIO_Port, BOARD_LED_Pin);
+
   /* Check if new data is too long for the buffer */
   if((*Len) + CDC_RXData.Length > USBD_CDC_RX_MAX_BUFFER_SIZE) {
     return (USBD_FAIL);
