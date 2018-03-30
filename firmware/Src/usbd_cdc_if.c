@@ -189,7 +189,9 @@ static int8_t CDC_Init_FS(void)
   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, UserRxBufferFS);
 
   /* Initialize RX buffer */
-  CDC_Data_Readed();
+  CDC_RXData.NewData = false;
+  CDC_RXData.Length = 0;
+
 
   return (USBD_OK);
   /* USER CODE END 3 */
@@ -296,7 +298,6 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
 static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 {
   /* USER CODE BEGIN 6 */
-
   /* Check if data was not processed */
   if(CDC_RXData.NewData == true){
     return (USBD_OK);
@@ -321,10 +322,6 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
       }
     }
   }
-
-  // Prepare to receive next data
-  USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
-  USBD_CDC_ReceivePacket(&hUsbDeviceFS);
 
   return (USBD_OK);
   /* USER CODE END 6 */
@@ -362,9 +359,13 @@ uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len)
  */
 void CDC_Data_Readed(void)
 {
-  // Reset buffer
+  /* Reset buffer */
   CDC_RXData.NewData = false;
   CDC_RXData.Length = 0;
+
+  /* Prepare/Allow to receive next data */
+  USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &UserRxBufferFS[0]);
+  USBD_CDC_ReceivePacket(&hUsbDeviceFS);
 }
 /* USER CODE END PRIVATE_FUNCTIONS_IMPLEMENTATION */
 
