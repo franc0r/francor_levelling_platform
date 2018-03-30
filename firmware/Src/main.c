@@ -293,8 +293,11 @@ void imuTaskMain(void const * argument)
   /* Infinite loop */
   for(;;)
   {
+    // execute main function
     imuMain();
-    osDelay(10);
+
+    // os delay time
+    osDelay(IMU_TASK_IDLE_TIME_MS);
   }
   /* USER CODE END 5 */ 
 }
@@ -306,8 +309,11 @@ void ledTaskMain(void const * argument)
   /* Infinite loop */
   for(;;)
   {
+    // execute main function
     ledMain();
-    osDelay(500);
+
+    // os delay time
+    osDelay(LED_TASK_IDLE_TIME_MS);
   }
   /* USER CODE END ledTaskMain */
 }
@@ -319,8 +325,11 @@ void cdcTaskMain(void const * argument)
   /* Infinite loop */
   for(;;)
   {
+    // execute main function
     cdcMain();
-    osDelay(100);
+
+    // os delay time
+    osDelay(CDC_TASK_IDLE_TIME_MS);
   }
   /* USER CODE END cdcTaskMain */
 }

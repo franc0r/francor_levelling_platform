@@ -51,7 +51,8 @@
 #include "usbd_cdc_if.h"
 
 /* USER CODE BEGIN INCLUDE */
-
+#include "main.h"
+#include "firmware.h"
 /* USER CODE END INCLUDE */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -78,7 +79,7 @@
   */
 
 /* USER CODE BEGIN PRIVATE_TYPES */
-
+CDC_RXDataDef CDC_RXData;
 /* USER CODE END PRIVATE_TYPES */
 
 /**
@@ -186,6 +187,10 @@ static int8_t CDC_Init_FS(void)
   /* Set Application Buffers */
   USBD_CDC_SetTxBuffer(&hUsbDeviceFS, UserTxBufferFS, 0);
   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, UserRxBufferFS);
+
+  /* Initialize RX buffer */
+  CDC_Data_Readed();
+
   return (USBD_OK);
   /* USER CODE END 3 */
 }
@@ -291,8 +296,36 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
 static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 {
   /* USER CODE BEGIN 6 */
+
+  /* Check if data was not processed */
+  if(CDC_RXData.NewData == true){
+    return (USBD_OK);
+  }
+
+  /* Check if new data is too long for the buffer */
+  if((*Len) + CDC_RXData.Length > USBD_CDC_RX_MAX_BUFFER_SIZE) {
+    return (USBD_FAIL);
+  }
+
+  /* Copy data to buffer */
+  memcpy(&CDC_RXData.Data[CDC_RXData.Length], &Buf[0], (*Len));
+
+  /* Update length */
+  CDC_RXData.Length = CDC_RXData.Length + (uint16_t)(*Len);
+
+  /* Check for escape sequence, count backwards */
+  for(uint16_t idx = CDC_RXData.Length; idx > (CDC_RXData.Length - (uint16_t)(*Len)); idx--){
+    if(idx > 0) {
+      if(CDC_RXData.Data[idx] == '\n' && CDC_RXData.Data[idx-1] == '\r'){
+        CDC_RXData.NewData = true;
+      }
+    }
+  }
+
+  // Prepare to receive next data
   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
   USBD_CDC_ReceivePacket(&hUsbDeviceFS);
+
   return (USBD_OK);
   /* USER CODE END 6 */
 }
@@ -324,6 +357,15 @@ uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len)
 
 /* USER CODE BEGIN PRIVATE_FUNCTIONS_IMPLEMENTATION */
 
+/**
+ * @brief Clears the buffer and prepares it to receive new data
+ */
+void CDC_Data_Readed(void)
+{
+  // Reset buffer
+  CDC_RXData.NewData = false;
+  CDC_RXData.Length = 0;
+}
 /* USER CODE END PRIVATE_FUNCTIONS_IMPLEMENTATION */
 
 /**

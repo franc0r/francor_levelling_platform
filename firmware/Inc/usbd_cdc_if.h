@@ -59,7 +59,7 @@
 #include "usbd_cdc.h"
 
 /* USER CODE BEGIN INCLUDE */
-
+#include "firmware.h"
 /* USER CODE END INCLUDE */
 
 /** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
@@ -78,6 +78,8 @@
   */
 /* USER CODE BEGIN EXPORTED_DEFINES */
 
+#define USBD_CDC_RX_MAX_BUFFER_SIZE 1000
+
 /* USER CODE END EXPORTED_DEFINES */
 
 /**
@@ -91,6 +93,15 @@
 
 /* USER CODE BEGIN EXPORTED_TYPES */
 
+ /**
+  *
+  */
+typedef struct
+{
+  uint8_t   Data[USBD_CDC_RX_MAX_BUFFER_SIZE]; //!< Data buffer
+  uint16_t  Length;                            //!< Length of received data
+  uint8_t   NewData;                           //!< New data available
+}CDC_RXDataDef;
 /* USER CODE END EXPORTED_TYPES */
 
 /**
@@ -119,7 +130,7 @@
 extern USBD_CDC_ItfTypeDef USBD_Interface_fops_FS;
 
 /* USER CODE BEGIN EXPORTED_VARIABLES */
-
+extern CDC_RXDataDef CDC_RXData;
 /* USER CODE END EXPORTED_VARIABLES */
 
 /**
@@ -134,7 +145,7 @@ extern USBD_CDC_ItfTypeDef USBD_Interface_fops_FS;
 uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len);
 
 /* USER CODE BEGIN EXPORTED_FUNCTIONS */
-
+void CDC_Data_Readed(void);
 /* USER CODE END EXPORTED_FUNCTIONS */
 
 /**

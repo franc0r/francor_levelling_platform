@@ -39,10 +39,15 @@
 #include "firmware.h"
 #include "usb_device.h"
 #include "usbd_cdc_if.h"
+#include <stdio.h>
+#include <stdarg.h>
+#include <string.h>
+
+/* Private function prototypes -----------------------------------------------*/
+
+/* FreeRTOS task functions ---------------------------------------------------*/
 
 /**
- *  void imuMain(void)
- *
  *  @brief Main function for handling IMU via I2C
  */
 void imuMain(void)
@@ -50,8 +55,6 @@ void imuMain(void)
 }
 
 /**
- *  void ledMain(void)
- *
  *  @brief Main function for blinking board LED
  */
 void ledMain(void)
@@ -60,11 +63,43 @@ void ledMain(void)
 }
 
 /**
- * void cdcMain(void)
- *
  * @brief Main function for handling CDC or virtual com port via USB
  */
 void cdcMain(void)
 {
+  /* Send received data back to transmitter for testing */
+  if(CDC_RXData.NewData) {
+    VCP_write(CDC_RXData.Data, CDC_RXData.Length);
+    CDC_Data_Readed();
+  }
+}
+
+/* Virtual Com Port functions ------------------------------------------------*/
+
+/**
+ * @brief Transmits data with a specific length via CDC
+ *
+ * @param data Pointer to the data buffer
+ * @param length Length of the data
+ */
+void VCP_write(const uint8_t *data, const uint16_t length)
+{
+    CDC_Transmit_FS((uint8_t*)data, length);
+}
+
+/**
+ * @brief Transmits a string via CDC
+ *
+ * @param str Pointer to a string
+ */
+void VCP_print(const char *str)
+{
+  char buffer[256];
+
+  /* Copy string to buffer with escape sequence */
+  sprintf(buffer, "%s\r\n", str);
+
+  /* Transmit data via CDC */
+  CDC_Transmit_FS((uint8_t*)buffer, (uint16_t)strlen(buffer));
 }
 

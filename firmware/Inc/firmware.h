@@ -39,9 +39,28 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef FIRMWARE_H_
 #define FIRMWARE_H_
 
+/* Includes ------------------------------------------------------------------*/
+#include "stm32f1xx_hal.h"
+#include "cmsis_os.h"
+
+/* Public definitions --------------------------------------------------------*/
+#define true                    1
+#define false                   0
+
+#define FW_RSLT_ERROR           0
+#define FW_RSLT_OK              1
+#define FW_RSLT_OVFLW           2
+
+#define IMU_TASK_IDLE_TIME_MS   10
+#define LED_TASK_IDLE_TIME_MS   500
+#define CDC_TASK_IDLE_TIME_MS   1
+
 /* Public function prototypes ------------------------------------------------*/
 void imuMain(void);
 void ledMain(void);
 void cdcMain(void);
+
+void VCP_write(const uint8_t *data, const uint16_t length);
+void VCP_print(const char *str);
 
 #endif /* FIRMWARE_H_ */
