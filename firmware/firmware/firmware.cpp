@@ -66,7 +66,7 @@ void LevelingPlatform::printInfo(const char* fmt, ...) {
   char buf[FW_MAX_BUFFER_SIZE];
 
   // modify string and ad sts + \r\n at end
-  sprintf(buf, "x%s\r\n", fmt);
+  sprintf(buf, "xInfo: %s\r\n", fmt);
   buf[0] = 0x02; // STS - start of text
 
   // push via CDC
@@ -110,15 +110,15 @@ FwResults LevelingPlatform::_initIMU() {
   // setup operation mode
   _imu->setmode(OPERATION_MODE_NDOF);
 
-  _vcp->printf("Adafruit IMU BNO055\r\n");
-  _vcp->printf("Serial:\r\n");
+  printInfo("Adafruit IMU BNO055\r\n");
+  printInfo("Serial:\r\n");
 
   // print serial number
   for(uint8_t idx = 0; idx < 4; idx++) {
-      _vcp->printf("%0x.%0x.%0x.%0x\r\n",_imu->ID.serial[idx*4],
-                          _imu->ID.serial[idx*4+1],
-                          _imu->ID.serial[idx*4+2],
-                          _imu->ID.serial[idx*4+3]);
+    printInfo("%0x.%0x.%0x.%0x\r\n",_imu->ID.serial[idx*4],
+              _imu->ID.serial[idx*4+1],
+              _imu->ID.serial[idx*4+2],
+              _imu->ID.serial[idx*4+3]);
   }
 
     return FW_OK;

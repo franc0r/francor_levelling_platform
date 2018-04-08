@@ -53,7 +53,10 @@ int main() {
   uint8_t rollingcounter = 0;
   while(true) {
       rollingcounter++;
-      app.printInfo("Nachricht : %i", rollingcounter);
-      wait_ms(1000);
+
+      app.getIMU().get_angles();
+      app.printInfo("%.2f %.2f %.2f", app.getIMU().euler.pitch, app.getIMU().euler.roll, app.getIMU().euler.yaw);
+
+      wait_ms(100);
   }
 }

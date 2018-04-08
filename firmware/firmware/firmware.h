@@ -73,8 +73,8 @@ class LevelingPlatform
    */
   void printInfo(const char* fmt, ...);
 
-  USBSerial* GetVCP()    {return (_vcp);}
-  BNO055* GetIMU()       {return (_imu);}
+  USBSerial& getVCP()       {return (*_vcp);}
+  BNO055&    getIMU()       {return (*_imu);}
 
  private:
 
