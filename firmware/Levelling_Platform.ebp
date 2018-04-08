@@ -3,7 +3,7 @@
 	<EmBitzVersion release="1.11" revision="0" />
 	<FileVersion major="1" minor="0" />
 	<Project>
-		<Option title="Levelling_Platform" />
+		<Option title="Leveling_Platform" />
 		<Option pch_mode="2" />
 		<Option compiler="armgcc_eb" />
 		<Build>
@@ -16,24 +16,24 @@
 					<Add option="$lscript=mbed/TARGET_NUCLEO_F103RB/TOOLCHAIN_GCC_ARM/STM32F103XB.ld" />
 				</Device>
 				<Compiler>
-					<Add option="-Wall" />
+					<Add option="-fno-exceptions" />
+					<Add option="-std=gnu99" />
 					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-fomit-frame-pointer" />
+					<Add option="-fdata-sections" />
+					<Add option="-ffunction-sections" />
+					<Add option="-Os" />
+					<Add option="-g" />
+					<Add option="-g1" />
+					<Add option="-funsigned-char" />
 					<Add option="-Wno-unused-parameter" />
 					<Add option="-Wno-missing-field-initializers" />
 					<Add option="-fmessage-length=0" />
-					<Add option="-fno-exceptions" />
 					<Add option="-fno-builtin" />
-					<Add option="-ffunction-sections" />
-					<Add option="-fdata-sections" />
-					<Add option="-funsigned-char" />
 					<Add option="-fno-delete-null-pointer-checks" />
-					<Add option="-fomit-frame-pointer" />
-					<Add option="-Os" />
-					<Add option="-g1" />
-					<Add option="-std=gnu99" />
 					<Add option="-include" />
 					<Add option="mbed_config.h" />
-					<Add option="-g" />
 					<Add symbol="__MBED__=1" />
 					<Add symbol="DEVICE_I2CSLAVE=1" />
 					<Add symbol="TARGET_LIKE_MBED" />
@@ -100,31 +100,33 @@
 					<Add directory="mbed\platform" />
 				</Compiler>
 				<Cpp>
-					<Add option="-Wall" />
+					<Add option="-fno-exceptions" />
+					<Add option="-fno-rtti" />
+					<Add option="-std=gnu++98" />
 					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-fomit-frame-pointer" />
+					<Add option="-fdata-sections" />
+					<Add option="-ffunction-sections" />
+					<Add option="-Os" />
+					<Add option="-g" />
+					<Add option="-g1" />
+					<Add option="-funsigned-char" />
 					<Add option="-Wno-unused-parameter" />
 					<Add option="-Wno-missing-field-initializers" />
 					<Add option="-fmessage-length=0" />
-					<Add option="-fno-exceptions" />
 					<Add option="-fno-builtin" />
-					<Add option="-ffunction-sections" />
-					<Add option="-fdata-sections" />
-					<Add option="-funsigned-char" />
 					<Add option="-fno-delete-null-pointer-checks" />
-					<Add option="-fomit-frame-pointer" />
-					<Add option="-Os" />
-					<Add option="-g1" />
-					<Add option="-std=gnu++98" />
-					<Add option="-fno-rtti" />
 					<Add option="-Wvla" />
 					<Add option="-include" />
 					<Add option="mbed_config.h" />
-					<Add option="-g" />
 				</Cpp>
 				<Assembler>
 					<Add option="-Wa,--gdwarf-2" />
 				</Assembler>
 				<Linker>
+					<Add option="-lstdc++" />
+					<Add option="-eb_start_files" />
 					<Add option="-Wl,--gc-sections" />
 					<Add option="-Wl,--wrap,main" />
 					<Add option="-Wl,--wrap,_malloc_r" />
@@ -135,8 +137,6 @@
 					<Add option="-Wl,--wrap,exit" />
 					<Add option="-Wl,--wrap,atexit" />
 					<Add option="-Wl,-n" />
-					<Add option="-lstdc++" />
-					<Add option="-eb_start_files" />
 					<Add library="supc++" />
 					<Add library="m" />
 					<Add library="c" />

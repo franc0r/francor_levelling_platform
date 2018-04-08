@@ -34,35 +34,68 @@
 
 /* Private Functions----------------------------------------------------------*/
 
-LevellingPlatform::LevellingPlatform(const PinName& board_led, const PinName& imu_sda,
-                                     const PinName& imu_scl)
+LevelingPlatform::LevelingPlatform(const PinName& board_led, const PinName& imu_sda,
+                                    const PinName& imu_scl)
 {
-    // Config system clock
-    confSysClock();
-    
-    // Do nothing
-    wait_ms(100);
-    
-    // Create instance of board led pin
-    _board_led = new DigitalOut(board_led);
-    
-    // Create instance of the IMU
-    _imu       = new BNO055(imu_sda, imu_scl);
-    
-    // Create instance of the USB virtual com port (CDC)
-    _vcp       = new USBSerial(0x1f00, 0x2012, 0x0001,  false);
-    
-    // Init IMU
-    if(_InitIMU() != FW_OK) {
-        //TODO error handler
-    }
+  // config system clock
+  confSysClock();
+
+  // Create instance of board led pin
+  _board_led = new DigitalOut(board_led);
+
+  // Create instance of the IMU
+  _imu       = new BNO055(imu_sda, imu_scl);
+
+  // Create instance of the USB virtual com port (CDC)
+  _vcp       = new USBSerial(0x1f00, 0x2012, 0x0001,  false);
+
+  // Init VCP
+  if(_initVCP() != FW_OK) {
+      //TODO error handler
+  }
+
+  // Init IMU
+  if(_initIMU() != FW_OK) {
+      //TODO error handler
+  }
 }
 
-void LevellingPlatform::PrintInfo(const char* fmt) {
-    _vcp->printf(fmt);
+void LevelingPlatform::printInfo(const char* fmt, ...) {
+  // variables
+  va_list args;
+  char buf[FW_MAX_BUFFER_SIZE];
+
+  // modify string and ad sts + \r\n at end
+  sprintf(buf, "x%s\r\n", fmt);
+  buf[0] = 0x02; // STS - start of text
+
+  // push via CDC
+  va_start(args, fmt);
+  _vcp->vprintf(buf, args);
+  va_end(args);
 }
 
-FwResults LevellingPlatform::_InitIMU() {
+FwResults LevelingPlatform::_initVCP() {
+  // Wait for terminal connection
+  while(_vcp->isConnected() == false) {
+      (*_board_led) = 0;
+      wait_ms(500);
+      (*_board_led) = 1;
+      wait_ms(500);
+  }
+
+  // Wait for first byte
+  while(_vcp->available() == 0) {
+      (*_board_led) = 0;
+      wait_ms(500);
+      (*_board_led) = 1;
+      wait_ms(500);
+  }
+
+  return FW_OK;
+}
+
+FwResults LevelingPlatform::_initIMU() {
   // Reset IMU
   _imu->reset();
 
@@ -73,10 +106,10 @@ FwResults LevellingPlatform::_InitIMU() {
 
   // activate external crystal
   _imu->SetExternalCrystal(true);
-  
+
   // setup operation mode
   _imu->setmode(OPERATION_MODE_NDOF);
-  
+
   _vcp->printf("Adafruit IMU BNO055\r\n");
   _vcp->printf("Serial:\r\n");
 
@@ -87,6 +120,6 @@ FwResults LevellingPlatform::_InitIMU() {
                           _imu->ID.serial[idx*4+2],
                           _imu->ID.serial[idx*4+3]);
   }
-    
+
     return FW_OK;
 }

@@ -48,12 +48,12 @@
   *
   */
 int main() {
+  LevelingPlatform app(FW_BOARD_LED, FW_IMU_SDA, FW_IMU_SCL);
 
-  LevellingPlatform app(FW_BOARD_LED, FW_IMU_SDA, FW_IMU_SCL);
-
-
+  uint8_t rollingcounter = 0;
   while(true) {
-      app.PrintInfo("Test\r\n");
+      rollingcounter++;
+      app.printInfo("Nachricht : %i", rollingcounter);
       wait_ms(1000);
   }
 }

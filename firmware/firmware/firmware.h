@@ -40,45 +40,58 @@
 #include "Serial.h"
 
 /* Definitions ---------------------------------------------------------------*/
+#define FW_MAX_BUFFER_SIZE  256
 
 /* Public functions ----------------------------------------------------------*/
 
 /* Enumerations --------------------------------------------------------------*/
 
+/**
+ * @brief Results of firmware functions
+ */
 enum FwResults {
-    FW_ERROR = 0,
-    FW_OK    = 1
+    FW_ERROR = 0, //!< Error occurred and execution is aborted
+    FW_OK    = 1  //!< Result of execution is ok
 };
 
 /* Classes and Structs -------------------------------------------------------*/
 
-class LevellingPlatform
+/**
+ * @brief Firmware of the Leveling Platform
+ */
+class LevelingPlatform
 {
  public:
   /**
   * @brief Levelling Platform Constructor
   */
-  LevellingPlatform(const PinName& board_led, const PinName& imu_sda,
-                     const PinName& imu_scl);
+  LevelingPlatform(const PinName& board_led, const PinName& imu_sda,
+                    const PinName& imu_scl);
 
   /**
    * @brief Prints a infor via the virtual com port
    */
-  void PrintInfo(const char* fmt);
-  
-  const BNO055& GetIMU()    {return (*_imu);}
-    
+  void printInfo(const char* fmt, ...);
+
+  USBSerial* GetVCP()    {return (_vcp);}
+  BNO055* GetIMU()       {return (_imu);}
+
  private:
- 
+
+  /**
+   * @brief Initializes the VCP connection
+   */
+  FwResults _initVCP();
+
   /**
    * @brief Initializes the IMU
    */
-  FwResults _InitIMU();
-  
+  FwResults _initIMU();
+
   DigitalOut*       _board_led; //!< Board LED
   USBSerial*        _vcp;       //!< Virtual com port
   BNO055*           _imu;       //!< IMU - Inertial Mesaurement Unit
-  
+
 };
 
 #endif /* FIRMWARE_H_ */
