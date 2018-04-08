@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<EmBitz_project_file>
+	<EmBitzVersion release="1.11" revision="0" />
+	<FileVersion major="1" minor="0" />
+	<Project>
+		<Option title="Levelling_Platform" />
+		<Option pch_mode="2" />
+		<Option compiler="armgcc_eb" />
+		<Build>
+			<Target title="Levelling_Platform">
+				<Option output=".\build\Levelling_Platform.elf" />
+				<Option type="0" />
+				<Option compiler="armgcc_eb" />
+				<Device>
+					<Add option="$device=cortex-m3" />
+					<Add option="$lscript=mbed/TARGET_NUCLEO_F103RB/TOOLCHAIN_GCC_ARM/STM32F103XB.ld" />
+				</Device>
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-Wextra" />
+					<Add option="-Wno-unused-parameter" />
+					<Add option="-Wno-missing-field-initializers" />
+					<Add option="-fmessage-length=0" />
+					<Add option="-fno-exceptions" />
+					<Add option="-fno-builtin" />
+					<Add option="-ffunction-sections" />
+					<Add option="-fdata-sections" />
+					<Add option="-funsigned-char" />
+					<Add option="-fno-delete-null-pointer-checks" />
+					<Add option="-fomit-frame-pointer" />
+					<Add option="-Os" />
+					<Add option="-g1" />
+					<Add option="-std=gnu99" />
+					<Add option="-include" />
+					<Add option="mbed_config.h" />
+					<Add option="-g" />
+					<Add symbol="__MBED__=1" />
+					<Add symbol="DEVICE_I2CSLAVE=1" />
+					<Add symbol="TARGET_LIKE_MBED" />
+					<Add symbol="DEVICE_PORTOUT=1" />
+					<Add symbol="DEVICE_PORTINOUT=1" />
+					<Add symbol="__MBED_CMSIS_RTOS_CM" />
+					<Add symbol="TARGET_STM32F1" />
+					<Add symbol="DEVICE_RTC=1" />
+					<Add symbol="TOOLCHAIN_object" />
+					<Add symbol="DEVICE_SERIAL_ASYNCH=1" />
+					<Add symbol="__CMSIS_RTOS" />
+					<Add symbol="TOOLCHAIN_GCC" />
+					<Add symbol="DEVICE_CAN=1" />
+					<Add symbol="TARGET_LIKE_CORTEX_M3" />
+					<Add symbol="TARGET_CORTEX_M" />
+					<Add symbol="ARM_MATH_CM3" />
+					<Add symbol="TARGET_UVISOR_UNSUPPORTED" />
+					<Add symbol="TARGET_M3" />
+					<Add symbol="DEVICE_SERIAL=1" />
+					<Add symbol="DEVICE_INTERRUPTIN=1" />
+					<Add symbol="TARGET_CORTEX" />
+					<Add symbol="DEVICE_I2C=1" />
+					<Add symbol="TRANSACTION_QUEUE_SIZE_SPI=2" />
+					<Add symbol="__CORTEX_M3" />
+					<Add symbol="DEVICE_STDIO_MESSAGES=1" />
+					<Add symbol="TARGET_FF_MORPHO" />
+					<Add symbol="DEVICE_SPI_ASYNCH=1" />
+					<Add symbol="TARGET_FF_ARDUINO" />
+					<Add symbol="TARGET_RELEASE" />
+					<Add symbol="TARGET_STM" />
+					<Add symbol="TOOLCHAIN_GCC_ARM" />
+					<Add symbol="DEVICE_SERIAL_FC=1" />
+					<Add symbol="DEVICE_PORTIN=1" />
+					<Add symbol="DEVICE_SLEEP=1" />
+					<Add symbol="TARGET_NUCLEO_F103RB" />
+					<Add symbol="MBED_BUILD_TIMESTAMP=1523203381.1" />
+					<Add symbol="DEVICE_SPI=1" />
+					<Add symbol="DEVICE_SPISLAVE=1" />
+					<Add symbol="DEVICE_ANALOGIN=1" />
+					<Add symbol="DEVICE_PWMOUT=1" />
+					<Add symbol="DEVICE_I2C_ASYNCH=1" />
+					<Add symbol="TARGET_STM32F103RB" />
+					<Add directory="." />
+					<Add directory="USBDevice_STM32F103" />
+					<Add directory="USBDevice_STM32F103\USBHID" />
+					<Add directory="USBDevice_STM32F103\USBDevice" />
+					<Add directory="USBDevice_STM32F103\USBSerial" />
+					<Add directory="USBDevice_STM32F103\USBMIDI" />
+					<Add directory="USBDevice_STM32F103\USBAudio" />
+					<Add directory="USBDevice_STM32F103\USBMSD" />
+					<Add directory="mbed-STM32F103C8T6" />
+					<Add directory="BNO055" />
+					<Add directory="firmware" />
+					<Add directory="mbed\." />
+					<Add directory="mbed\TARGET_NUCLEO_F103RB" />
+					<Add directory="mbed\TARGET_NUCLEO_F103RB\TARGET_STM" />
+					<Add directory="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1" />
+					<Add directory="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\TARGET_NUCLEO_F103RB" />
+					<Add directory="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\TARGET_NUCLEO_F103RB\device" />
+					<Add directory="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device" />
+					<Add directory="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM" />
+					<Add directory="mbed\drivers" />
+					<Add directory="mbed\hal" />
+					<Add directory="mbed\platform" />
+				</Compiler>
+				<Cpp>
+					<Add option="-Wall" />
+					<Add option="-Wextra" />
+					<Add option="-Wno-unused-parameter" />
+					<Add option="-Wno-missing-field-initializers" />
+					<Add option="-fmessage-length=0" />
+					<Add option="-fno-exceptions" />
+					<Add option="-fno-builtin" />
+					<Add option="-ffunction-sections" />
+					<Add option="-fdata-sections" />
+					<Add option="-funsigned-char" />
+					<Add option="-fno-delete-null-pointer-checks" />
+					<Add option="-fomit-frame-pointer" />
+					<Add option="-Os" />
+					<Add option="-g1" />
+					<Add option="-std=gnu++98" />
+					<Add option="-fno-rtti" />
+					<Add option="-Wvla" />
+					<Add option="-include" />
+					<Add option="mbed_config.h" />
+					<Add option="-g" />
+				</Cpp>
+				<Assembler>
+					<Add option="-Wa,--gdwarf-2" />
+				</Assembler>
+				<Linker>
+					<Add option="-Wl,--gc-sections" />
+					<Add option="-Wl,--wrap,main" />
+					<Add option="-Wl,--wrap,_malloc_r" />
+					<Add option="-Wl,--wrap,_free_r" />
+					<Add option="-Wl,--wrap,_realloc_r" />
+					<Add option="-Wl,--wrap,_memalign_r" />
+					<Add option="-Wl,--wrap,_calloc_r" />
+					<Add option="-Wl,--wrap,exit" />
+					<Add option="-Wl,--wrap,atexit" />
+					<Add option="-Wl,-n" />
+					<Add option="-lstdc++" />
+					<Add option="-eb_start_files" />
+					<Add library="supc++" />
+					<Add library="m" />
+					<Add library="c" />
+					<Add library="gcc" />
+					<Add library="nosys" />
+					<Add library="mbed" />
+					<Add directory="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="BNO055\BNO055.cpp">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="BNO055\BNO055.h" />
+		<Unit filename="firmware\firmware.cpp">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="firmware\firmware.h" />
+		<Unit filename="main.cpp">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mbed-STM32F103C8T6\PinNames.h" />
+		<Unit filename="mbed-STM32F103C8T6\stm32f103c8t6.h" />
+		<Unit filename="mbed-STM32F103C8T6\SysClockConf.cpp">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mbed-STM32F103C8T6\SysClockConf.h" />
+		<Unit filename="mbed\drivers\AnalogIn.h" />
+		<Unit filename="mbed\drivers\AnalogOut.h" />
+		<Unit filename="mbed\drivers\BusIn.h" />
+		<Unit filename="mbed\drivers\BusInOut.h" />
+		<Unit filename="mbed\drivers\BusOut.h" />
+		<Unit filename="mbed\drivers\CAN.h" />
+		<Unit filename="mbed\drivers\DigitalIn.h" />
+		<Unit filename="mbed\drivers\DigitalInOut.h" />
+		<Unit filename="mbed\drivers\DigitalOut.h" />
+		<Unit filename="mbed\drivers\DirHandle.h" />
+		<Unit filename="mbed\drivers\Ethernet.h" />
+		<Unit filename="mbed\drivers\FileBase.h" />
+		<Unit filename="mbed\drivers\FileHandle.h" />
+		<Unit filename="mbed\drivers\FileLike.h" />
+		<Unit filename="mbed\drivers\FilePath.h" />
+		<Unit filename="mbed\drivers\FileSystemLike.h" />
+		<Unit filename="mbed\drivers\FlashIAP.h" />
+		<Unit filename="mbed\drivers\I2C.h" />
+		<Unit filename="mbed\drivers\I2CSlave.h" />
+		<Unit filename="mbed\drivers\InterruptIn.h" />
+		<Unit filename="mbed\drivers\InterruptManager.h" />
+		<Unit filename="mbed\drivers\LocalFileSystem.h" />
+		<Unit filename="mbed\drivers\LowPowerTicker.h" />
+		<Unit filename="mbed\drivers\LowPowerTimeout.h" />
+		<Unit filename="mbed\drivers\LowPowerTimer.h" />
+		<Unit filename="mbed\drivers\PortIn.h" />
+		<Unit filename="mbed\drivers\PortInOut.h" />
+		<Unit filename="mbed\drivers\PortOut.h" />
+		<Unit filename="mbed\drivers\PwmOut.h" />
+		<Unit filename="mbed\drivers\RawSerial.h" />
+		<Unit filename="mbed\drivers\Serial.h" />
+		<Unit filename="mbed\drivers\SerialBase.h" />
+		<Unit filename="mbed\drivers\SPI.h" />
+		<Unit filename="mbed\drivers\SPISlave.h" />
+		<Unit filename="mbed\drivers\Stream.h" />
+		<Unit filename="mbed\drivers\Ticker.h" />
+		<Unit filename="mbed\drivers\Timeout.h" />
+		<Unit filename="mbed\drivers\Timer.h" />
+		<Unit filename="mbed\drivers\TimerEvent.h" />
+		<Unit filename="mbed\hal\analogin_api.h" />
+		<Unit filename="mbed\hal\analogout_api.h" />
+		<Unit filename="mbed\hal\buffer.h" />
+		<Unit filename="mbed\hal\can_api.h" />
+		<Unit filename="mbed\hal\can_helper.h" />
+		<Unit filename="mbed\hal\dma_api.h" />
+		<Unit filename="mbed\hal\Driver_Common.h" />
+		<Unit filename="mbed\hal\Driver_Storage.h" />
+		<Unit filename="mbed\hal\emac_api.h" />
+		<Unit filename="mbed\hal\ethernet_api.h" />
+		<Unit filename="mbed\hal\flash_api.h" />
+		<Unit filename="mbed\hal\flash_data.h" />
+		<Unit filename="mbed\hal\gpio_api.h" />
+		<Unit filename="mbed\hal\gpio_irq_api.h" />
+		<Unit filename="mbed\hal\i2c_api.h" />
+		<Unit filename="mbed\hal\lp_ticker_api.h" />
+		<Unit filename="mbed\hal\pinmap.h" />
+		<Unit filename="mbed\hal\port_api.h" />
+		<Unit filename="mbed\hal\pwmout_api.h" />
+		<Unit filename="mbed\hal\rtc_api.h" />
+		<Unit filename="mbed\hal\serial_api.h" />
+		<Unit filename="mbed\hal\sleep_api.h" />
+		<Unit filename="mbed\hal\spi_api.h" />
+		<Unit filename="mbed\hal\ticker_api.h" />
+		<Unit filename="mbed\hal\trng_api.h" />
+		<Unit filename="mbed\hal\us_ticker_api.h" />
+		<Unit filename="mbed\mbed.h" />
+		<Unit filename="mbed\mbed_config.h" />
+		<Unit filename="mbed\platform\Callback.h" />
+		<Unit filename="mbed\platform\CallChain.h" />
+		<Unit filename="mbed\platform\CircularBuffer.h" />
+		<Unit filename="mbed\platform\critical.h" />
+		<Unit filename="mbed\platform\CThunk.h" />
+		<Unit filename="mbed\platform\FunctionPointer.h" />
+		<Unit filename="mbed\platform\mbed_application.h" />
+		<Unit filename="mbed\platform\mbed_assert.h" />
+		<Unit filename="mbed\platform\mbed_critical.h" />
+		<Unit filename="mbed\platform\mbed_debug.h" />
+		<Unit filename="mbed\platform\mbed_error.h" />
+		<Unit filename="mbed\platform\mbed_interface.h" />
+		<Unit filename="mbed\platform\mbed_mem_trace.h" />
+		<Unit filename="mbed\platform\mbed_preprocessor.h" />
+		<Unit filename="mbed\platform\mbed_retarget.h" />
+		<Unit filename="mbed\platform\mbed_rtc_time.h" />
+		<Unit filename="mbed\platform\mbed_semihost_api.h" />
+		<Unit filename="mbed\platform\mbed_sleep.h" />
+		<Unit filename="mbed\platform\mbed_stats.h" />
+		<Unit filename="mbed\platform\mbed_toolchain.h" />
+		<Unit filename="mbed\platform\mbed_wait_api.h" />
+		<Unit filename="mbed\platform\platform.h" />
+		<Unit filename="mbed\platform\PlatformMutex.h" />
+		<Unit filename="mbed\platform\rtc_time.h" />
+		<Unit filename="mbed\platform\semihost_api.h" />
+		<Unit filename="mbed\platform\SingletonPtr.h" />
+		<Unit filename="mbed\platform\sleep.h" />
+		<Unit filename="mbed\platform\toolchain.h" />
+		<Unit filename="mbed\platform\Transaction.h" />
+		<Unit filename="mbed\platform\wait_api.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\arm_common_tables.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\arm_const_structs.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\arm_math.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\core_ca9.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\core_ca_mmu.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\core_caFunc.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\core_caInstr.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\core_cm0.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\core_cm0plus.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\core_cm3.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\core_cm4.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\core_cm4_simd.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\core_cm7.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\core_cmFunc.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\core_cmInstr.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\core_cmSecureAccess.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\core_cmSimd.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\core_sc000.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\core_sc300.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\gpio_object.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\mbed_rtx.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\PeripheralPins.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\PinNamesTypes.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\PortNames.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\rtc_api_hal.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\can_device.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\common_objects.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32_assert_template.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32_hal_legacy.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_adc.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_adc_ex.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_can.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_can_ex.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_cec.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_conf.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_cortex.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_crc.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_dac.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_dac_ex.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_def.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_dma.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_dma_ex.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_eth.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_flash.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_flash_ex.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_gpio.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_gpio_ex.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_hcd.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_i2c.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_i2s.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_irda.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_iwdg.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_nand.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_nor.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_pccard.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_pcd.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_pcd_ex.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_pwr.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_rcc.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_rcc_ex.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_rtc.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_rtc_ex.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_sd.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_smartcard.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_spi.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_sram.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_tim.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_tim_ex.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_uart.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_usart.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_hal_wwdg.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_ll_bus.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_ll_cortex.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_ll_crc.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_ll_exti.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_ll_fsmc.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_ll_gpio.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_ll_pwr.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_ll_rcc.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_ll_sdmmc.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_ll_system.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_ll_usb.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\device\stm32f1xx_ll_utils.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\gpio_irq_device.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\i2c_device.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\pin_device.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\pwmout_device.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\TARGET_NUCLEO_F103RB\device\cmsis.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\TARGET_NUCLEO_F103RB\device\cmsis_nvic.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\TARGET_NUCLEO_F103RB\device\hal_tick.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\TARGET_NUCLEO_F103RB\device\stm32f103xb.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\TARGET_NUCLEO_F103RB\device\stm32f1xx.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\TARGET_NUCLEO_F103RB\device\system_stm32f1xx.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\TARGET_NUCLEO_F103RB\objects.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\TARGET_NUCLEO_F103RB\PeripheralNames.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TARGET_STM\TARGET_STM32F1\TARGET_NUCLEO_F103RB\PinNames.h" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\analogin_api.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\can_api.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\cmsis_nvic.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\gpio_api.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\gpio_irq_api.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\gpio_irq_device.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\hal_tick_16b.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\hal_tick_32b.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\i2c_api.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\lp_ticker.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\mbed_board.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\mbed_overrides.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\mbed_retarget.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\PeripheralPins.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\pinmap.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\port_api.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\pwmout_api.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\pwmout_device.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\rtc_api.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\serial_api.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\sleep.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\spi_api.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\startup_stm32f103xb.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_adc.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_adc_ex.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_can.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_cec.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_cortex.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_crc.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_dac.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_dac_ex.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_dma.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_eth.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_flash.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_flash_ex.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_gpio.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_gpio_ex.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_hcd.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_i2c.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_i2s.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_irda.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_iwdg.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_nand.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_nor.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_pccard.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_pcd.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_pcd_ex.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_pwr.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_rcc.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_rcc_ex.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_rtc.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_rtc_ex.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_sd.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_smartcard.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_spi.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_spi_ex.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_sram.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_tim.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_tim_ex.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_uart.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_usart.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_hal_wwdg.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_ll_crc.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_ll_exti.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_ll_fsmc.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_ll_gpio.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_ll_pwr.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_ll_rcc.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_ll_sdmmc.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_ll_usb.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm32f1xx_ll_utils.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\stm_spi_api.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\system_stm32f1xx.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\trng_api.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\us_ticker_16b.o" />
+		<Unit filename="mbed\TARGET_NUCLEO_F103RB\TOOLCHAIN_GCC_ARM\us_ticker_32b.o" />
+		<Unit filename="USBDevice_STM32F103\USBDevice\USBDescriptor.h" />
+		<Unit filename="USBDevice_STM32F103\USBDevice\USBDevice.cpp">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="USBDevice_STM32F103\USBDevice\USBDevice.h" />
+		<Unit filename="USBDevice_STM32F103\USBDevice\USBDevice_Types.h" />
+		<Unit filename="USBDevice_STM32F103\USBDevice\USBEndpoints.h" />
+		<Unit filename="USBDevice_STM32F103\USBDevice\USBEndpoints_STM32F1.h" />
+		<Unit filename="USBDevice_STM32F103\USBDevice\USBHAL.h" />
+		<Unit filename="USBDevice_STM32F103\USBDevice\USBHAL_STM32F1.cpp">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="USBDevice_STM32F103\USBDevice\USBRegs_STM32.h" />
+		<Unit filename="USBDevice_STM32F103\USBSerial\CircBuffer.h" />
+		<Unit filename="USBDevice_STM32F103\USBSerial\USBCDC.cpp">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="USBDevice_STM32F103\USBSerial\USBCDC.h" />
+		<Unit filename="USBDevice_STM32F103\USBSerial\USBSerial.cpp">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="USBDevice_STM32F103\USBSerial\USBSerial.h" />
+		<Extensions>
+			<code_completion />
+			<debugger>
+				<target_debugging_settings target="Levelling_Platform" active_interface="ST-link">
+					<debug_interface interface_id="ST-link" ip_address="localhost" ip_port="4242" path="${EMBITZ}\share\contrib" executable="STLinkGDB.exe" description="" dont_start_server="false" backoff_time="1000" options="2" reg_filter="0" active_family="STMicroelectronics" gdb_before_conn="" gdb_after_conn="">
+						<family_options family_id="STMicroelectronics">
+							<option opt_id="ID_JTAG_SWD" opt_value="swd" />
+							<option opt_id="ID_VECTOR_START" opt_value="0x08000000" />
+							<option opt_id="ID_RESET_TYPE" opt_value="System" />
+							<option opt_id="ID_LOAD_PROGRAM" opt_value="1" />
+							<option opt_id="ID_SEMIHOST_CHECK" opt_value="0" />
+							<option opt_id="ID_RAM_EXEC" opt_value="0" />
+							<option opt_id="ID_VEC_TABLE" opt_value="1" />
+							<option opt_id="ID_DONT_CONN_RESET" opt_value="0" />
+							<option opt_id="ID_ALL_MODE_DEBUG" opt_value="0" />
+							<option opt_id="ID_DEV_ADDR" opt_value="" />
+							<option opt_id="ID_VERBOSE_LEVEL" opt_value="3" />
+						</family_options>
+					</debug_interface>
+				</target_debugging_settings>
+			</debugger>
+			<envvars />
+		</Extensions>
+	</Project>
+</EmBitz_project_file>
