@@ -34,8 +34,22 @@
 
 /* Private Functions----------------------------------------------------------*/
 
+inline float rangeAngles(const float& angle, const float& max_angle_abs) {
+  if(angle > max_angle_abs) {
+    return max_angle_abs;
+  }
+  else if(angle < -max_angle_abs){
+    return -max_angle_abs;
+  }
+
+  return angle;
+}
+
+
 LevelingPlatform::LevelingPlatform(const PinName& board_led, const PinName& imu_sda,
-                                    const PinName& imu_scl)
+                                    const PinName& imu_scl):
+_servo1(PA_8),
+_servo2(PA_9)
 {
   // config system clock
   confSysClock();
@@ -49,6 +63,14 @@ LevelingPlatform::LevelingPlatform(const PinName& board_led, const PinName& imu_
   // Create instance of the USB virtual com port (CDC)
   _vcp       = new USBSerial(0x1f00, 0x2012, 0x0001,  false);
 
+  // Reset variables
+  _tick_cnt = 0;
+  _vcp_available = false;
+
+  // Setup frequency
+  _servo1.period_ms(20);
+  _servo2.period_ms(20);
+
   // Init VCP
   if(_initVCP() != FW_OK) {
       //TODO error handler
@@ -60,7 +82,61 @@ LevelingPlatform::LevelingPlatform(const PinName& board_led, const PinName& imu_
   }
 }
 
+FwResults LevelingPlatform::run(void) {
+  uint32_t tmp_tick_imu = 0;
+  uint32_t tmp_tick_vcp = 0;
+  uint32_t tmp_tick_servo = 0;
+  int32_t tmp_pw1 = 0;
+  int32_t tmp_pw2 = 0;
+  float angle1, angle2;
+  int32_t pw1, pw2;
+
+  while(true) {
+    if((_tick_cnt - tmp_tick_imu) > 10) {
+      _imu->get_angles();
+      tmp_tick_imu = _tick_cnt;
+    }
+
+    if((_tick_cnt - tmp_tick_vcp) > 100) {
+      if((_vcp->isConnected() == true) &&
+         (_vcp->available() == true) &&
+         (_vcp_available == false)) {
+            _vcp_available = true;
+         }
+
+      tmp_tick_vcp = _tick_cnt;
+    }
+
+    if((_tick_cnt - tmp_tick_servo) > 20) {
+      angle1 = (rangeAngles(_imu->euler.roll, 90.0f) / 90.0f) * 1000.0f + 1500.0f;
+      angle2 = (rangeAngles(_imu->euler.pitch, 90.0f) / 90.0f) * 1000.0f + 1500.0f;
+
+      pw1 = angle1;
+      pw2 = angle2;
+
+      if(abs(pw1 - tmp_pw1) > 5) {
+        tmp_pw1 = pw1;
+        _servo1.pulsewidth_us(pw1);
+      }
+      else if(abs(pw2 - tmp_pw2) > 5) {
+        tmp_pw2 = pw2;
+        _servo2.pulsewidth_us(pw2);
+      }
+
+      printInfo("Angle1: %i Angle2: %i", pw1, pw2);
+
+      tmp_tick_servo = _tick_cnt;
+    }
+
+
+    _tick_cnt++;
+    wait_ms(1);
+  }
+}
+
 void LevelingPlatform::printInfo(const char* fmt, ...) {
+  if(_vcp_available == false) return;
+
   // variables
   va_list args;
   char buf[FW_MAX_BUFFER_SIZE];
@@ -76,22 +152,6 @@ void LevelingPlatform::printInfo(const char* fmt, ...) {
 }
 
 FwResults LevelingPlatform::_initVCP() {
-  // Wait for terminal connection
-  while(_vcp->isConnected() == false) {
-      (*_board_led) = 0;
-      wait_ms(500);
-      (*_board_led) = 1;
-      wait_ms(500);
-  }
-
-  // Wait for first byte
-  while(_vcp->available() == 0) {
-      (*_board_led) = 0;
-      wait_ms(500);
-      (*_board_led) = 1;
-      wait_ms(500);
-  }
-
   return FW_OK;
 }
 
@@ -109,17 +169,6 @@ FwResults LevelingPlatform::_initIMU() {
 
   // setup operation mode
   _imu->setmode(OPERATION_MODE_NDOF);
-
-  printInfo("Adafruit IMU BNO055\r\n");
-  printInfo("Serial:\r\n");
-
-  // print serial number
-  for(uint8_t idx = 0; idx < 4; idx++) {
-    printInfo("%0x.%0x.%0x.%0x\r\n",_imu->ID.serial[idx*4],
-              _imu->ID.serial[idx*4+1],
-              _imu->ID.serial[idx*4+2],
-              _imu->ID.serial[idx*4+3]);
-  }
 
     return FW_OK;
 }

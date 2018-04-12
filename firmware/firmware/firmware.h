@@ -69,6 +69,11 @@ class LevelingPlatform
                     const PinName& imu_scl);
 
   /**
+   * @brief Main loop of the application
+   */
+   FwResults run(void);
+
+  /**
    * @brief Prints a infor via the virtual com port
    */
   void printInfo(const char* fmt, ...);
@@ -88,9 +93,15 @@ class LevelingPlatform
    */
   FwResults _initIMU();
 
-  DigitalOut*       _board_led; //!< Board LED
-  USBSerial*        _vcp;       //!< Virtual com port
-  BNO055*           _imu;       //!< IMU - Inertial Mesaurement Unit
+  DigitalOut*       _board_led;       //!< Board LED
+  USBSerial*        _vcp;             //!< Virtual com port
+  BNO055*           _imu;             //!< IMU - Inertial Mesaurement Unit
+  PwmOut            _servo1;          //!< First servo
+  PwmOut            _servo2;          //!< Second servo
+
+  bool              _vcp_available;   //!< VCP is available
+  uint32_t          _tick_cnt;        //!< Tick counter
+
 
 };
 
