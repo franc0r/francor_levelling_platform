@@ -33,7 +33,9 @@
 
 namespace francor {
 
-LevellingPlatformNode::LevellingPlatformNode(void) :
+LevellingPlatformNode::LevellingPlatformNode(const std::string& ns, const std::string& serialPortPath) :
+_nh(),
+_serialPortPath(serialPortPath),
 _serialInterface()
 {
 
@@ -46,6 +48,19 @@ LevellingPlatformNode::~LevellingPlatformNode(void)
 
 void LevellingPlatformNode::run(void) 
 {
+  ROS_INFO("Starting up mode...");
+
+  if(!_serialInterface.connect(_serialPortPath, 256000)) {
+    ROS_ERROR("Failed to connect to virtual com port %s", _serialPortPath.c_str());
+  }
+
+  sleep(1);
+
+  const unsigned char flushData[3] = {0x00, '\r', '\n'};
+  _serialInterface.transmitBuffer(flushData, 3);
+
+
+
 
 }
 
@@ -53,5 +68,17 @@ void LevellingPlatformNode::run(void)
 
 int main(int argc, char** argv) 
 {
+  std::string serialPortPath;
+
+  ros::init(argc, argv, "francor_levelling_platform");
+  ros::NodeHandle nh("~");
+
+  nh.param<std::string>("serialPortPath", serialPortPath, "/dev/ttyACM0");
+
+  francor::LevellingPlatformNode node(nh.getNamespace(), serialPortPath);
+
+  node.run();
+
+  return 0;
 
 }

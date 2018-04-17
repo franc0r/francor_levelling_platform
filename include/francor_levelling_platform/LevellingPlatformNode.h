@@ -45,7 +45,7 @@ namespace francor
 class LevellingPlatformNode
 {
 public:
-    LevellingPlatformNode(void);
+    LevellingPlatformNode(const std::string& ns, const std::string& serialPortPath);
 
     ~LevellingPlatformNode(void);
 
@@ -53,8 +53,11 @@ public:
 
 private:
 
-    SerialInterface     _serialInterface;   //!< Instance of the serial interface
+    ros::NodeHandle     _nh;                //!< Node handle
 
+    const std::string   _serialPortPath;    //!< Serial port path
+
+    SerialInterface     _serialInterface;   //!< Instance of the serial interface
 };
 
 }
