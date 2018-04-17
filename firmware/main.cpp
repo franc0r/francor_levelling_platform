@@ -50,13 +50,7 @@
 int main() {
   LevelingPlatform app(FW_BOARD_LED, FW_IMU_SDA, FW_IMU_SCL);
 
-  uint8_t rollingcounter = 0;
   while(true) {
-      rollingcounter++;
-
-      app.getIMU().get_angles();
-      app.printInfo("%.2f %.2f %.2f", app.getIMU().euler.pitch, app.getIMU().euler.roll, app.getIMU().euler.yaw);
-
-      wait_ms(100);
+    app.run();
   }
 }
