@@ -120,8 +120,11 @@ void LevellingPlatform::taskIMU(void) {
 void LevellingPlatform::taskServo(void) {
   static int32_t tmp_pw1 = 0, tmp_pw2 = 0;
   int32_t dev = 0;
-  const int32_t pw1 = limit((_imu->euler.rawroll), 1000) + 1500;
-  const int32_t pw2 = limit((_imu->euler.rawpitch), 1000) + 1500;
+
+  const float   roll = (float)(_imu->euler.rawroll) * 0.85f;
+  const float   pitch = (float)(_imu->euler.rawpitch) * 0.85f;
+  const int32_t pw1 = limit((int32_t)roundf(roll), 500) + 1500;
+  const int32_t pw2 = limit((int32_t)roundf(pitch), 500) + 1500;
 
   dev = pw1 - tmp_pw1;
   if(dev > FW_SERVO_MIN_DEV_MOVMT_THD || dev < -FW_SERVO_MIN_DEV_MOVMT_THD) {
