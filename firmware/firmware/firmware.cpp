@@ -34,20 +34,20 @@
 
 /* Private Functions----------------------------------------------------------*/
 
-inline float rangeAngles(const float& angle, const float& max_angle_abs) {
-  if(angle > max_angle_abs) {
-    return max_angle_abs;
+inline int32_t limit(const int32_t& value, const int32_t& max_value_abs) {
+  if(value > max_value_abs) {
+    return max_value_abs;
   }
-  else if(angle < -max_angle_abs){
-    return -max_angle_abs;
+  else if(value < -max_value_abs){
+    return -max_value_abs;
   }
 
-  return angle;
+  return value;
 }
 
 
-LevelingPlatform::LevelingPlatform(const PinName& board_led, const PinName& imu_sda,
-                                    const PinName& imu_scl):
+LevellingPlatform::LevellingPlatform(const PinName& board_led, const PinName& imu_sda,
+                                     const PinName& imu_scl):
 _servo1(PA_8),
 _servo2(PA_9)
 {
@@ -68,8 +68,8 @@ _servo2(PA_9)
   _vcp_available = false;
 
   // Setup frequency
-  _servo1.period_ms(20);
-  _servo2.period_ms(20);
+  _servo1.period_ms(5);
+  _servo2.period_ms(5);
 
   // Init VCP
   if(_initVCP() != FW_OK) {
@@ -82,59 +82,62 @@ _servo2(PA_9)
   }
 }
 
-FwResults LevelingPlatform::run(void) {
+FwResults LevellingPlatform::run(void) {
   uint32_t tmp_tick_imu = 0;
   uint32_t tmp_tick_vcp = 0;
   uint32_t tmp_tick_servo = 0;
-  int32_t tmp_pw1 = 0;
-  int32_t tmp_pw2 = 0;
-  float angle1, angle2;
-  int32_t pw1, pw2;
+  uint32_t dev_ticks = 0;
 
   while(true) {
-    if((_tick_cnt - tmp_tick_imu) > 10) {
-      _imu->get_angles();
+    dev_ticks = (_tick_cnt - tmp_tick_imu);
+    if(dev_ticks > FW_IMU_UPDATE_RATE_MS) {
+      taskIMU();
       tmp_tick_imu = _tick_cnt;
     }
 
-    if((_tick_cnt - tmp_tick_vcp) > 100) {
-      if((_vcp->isConnected() == true) &&
-         (_vcp->available() == true) &&
-         (_vcp_available == false)) {
-            _vcp_available = true;
-         }
-
-      tmp_tick_vcp = _tick_cnt;
-    }
-
-    if((_tick_cnt - tmp_tick_servo) > 20) {
-      angle1 = (rangeAngles(_imu->euler.roll, 90.0f) / 90.0f) * 1000.0f + 1500.0f;
-      angle2 = (rangeAngles(_imu->euler.pitch, 90.0f) / 90.0f) * 1000.0f + 1500.0f;
-
-      pw1 = angle1;
-      pw2 = angle2;
-
-      if(abs(pw1 - tmp_pw1) > 5) {
-        tmp_pw1 = pw1;
-        _servo1.pulsewidth_us(pw1);
-      }
-      else if(abs(pw2 - tmp_pw2) > 5) {
-        tmp_pw2 = pw2;
-        _servo2.pulsewidth_us(pw2);
-      }
-
-      printInfo("Angle1: %i Angle2: %i", pw1, pw2);
-
+    dev_ticks = (_tick_cnt - tmp_tick_servo);
+    if(dev_ticks > FW_SERVO_UPDATE_RATE_MS) {
+      taskServo();
       tmp_tick_servo = _tick_cnt;
     }
 
+    // check if vcp is available
+    if(_vcp_available == false) {
+      if(_vcp->isConnected() == true && _vcp->available() == true) {
+          _vcp_available = true;
+      }
+    }
 
     _tick_cnt++;
     wait_ms(1);
   }
 }
 
-void LevelingPlatform::printInfo(const char* fmt, ...) {
+void LevellingPlatform::taskIMU(void) {
+  _imu->get_angles();
+}
+
+void LevellingPlatform::taskServo(void) {
+  static int32_t tmp_pw1 = 0, tmp_pw2 = 0;
+  int32_t dev = 0;
+  const int32_t pw1 = limit((_imu->euler.rawroll), 1000) + 1500;
+  const int32_t pw2 = limit((_imu->euler.rawpitch), 1000) + 1500;
+
+  dev = pw1 - tmp_pw1;
+  if(dev > FW_SERVO_MIN_DEV_MOVMT_THD || dev < -FW_SERVO_MIN_DEV_MOVMT_THD) {
+    _servo1.pulsewidth_us(pw1);
+    tmp_pw1 = pw1;
+  }
+
+  dev = pw2 - tmp_pw2;
+  if(dev > FW_SERVO_MIN_DEV_MOVMT_THD || dev < -FW_SERVO_MIN_DEV_MOVMT_THD) {
+    _servo2.pulsewidth_us(pw2);
+    tmp_pw2 = pw2;
+  }
+
+}
+
+void LevellingPlatform::printInfo(const char* fmt, ...) {
   if(_vcp_available == false) return;
 
   // variables
@@ -151,11 +154,11 @@ void LevelingPlatform::printInfo(const char* fmt, ...) {
   va_end(args);
 }
 
-FwResults LevelingPlatform::_initVCP() {
+FwResults LevellingPlatform::_initVCP() {
   return FW_OK;
 }
 
-FwResults LevelingPlatform::_initIMU() {
+FwResults LevellingPlatform::_initIMU() {
   // Reset IMU
   _imu->reset();
 

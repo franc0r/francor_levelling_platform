@@ -48,7 +48,7 @@
   *
   */
 int main() {
-  LevelingPlatform app(FW_BOARD_LED, FW_IMU_SDA, FW_IMU_SCL);
+  LevellingPlatform app(FW_BOARD_LED, FW_IMU_SDA, FW_IMU_SCL);
 
   while(true) {
     app.run();

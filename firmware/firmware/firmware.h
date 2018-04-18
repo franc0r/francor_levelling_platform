@@ -42,6 +42,11 @@
 /* Definitions ---------------------------------------------------------------*/
 #define FW_MAX_BUFFER_SIZE  256
 
+#define FW_IMU_UPDATE_RATE_MS     2
+#define FW_SERVO_UPDATE_RATE_MS   10
+
+#define FW_SERVO_MIN_DEV_MOVMT_THD  5
+
 /* Public functions ----------------------------------------------------------*/
 
 /* Enumerations --------------------------------------------------------------*/
@@ -59,13 +64,13 @@ enum FwResults {
 /**
  * @brief Firmware of the Leveling Platform
  */
-class LevelingPlatform
+class LevellingPlatform
 {
  public:
   /**
   * @brief Levelling Platform Constructor
   */
-  LevelingPlatform(const PinName& board_led, const PinName& imu_sda,
+  LevellingPlatform(const PinName& board_led, const PinName& imu_sda,
                     const PinName& imu_scl);
 
   /**
@@ -86,12 +91,17 @@ class LevelingPlatform
   /**
    * @brief Initializes the VCP connection
    */
-  FwResults _initVCP();
+  FwResults _initVCP(void);
 
   /**
    * @brief Initializes the IMU
    */
-  FwResults _initIMU();
+  FwResults _initIMU(void);
+
+
+  void taskIMU(void);
+
+  void taskServo(void);
 
   DigitalOut*       _board_led;       //!< Board LED
   USBSerial*        _vcp;             //!< Virtual com port
