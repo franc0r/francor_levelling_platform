@@ -121,8 +121,8 @@ void LevellingPlatform::taskServo(void) {
   static int32_t tmp_pw1 = 0, tmp_pw2 = 0;
   int32_t dev = 0;
 
-  const float   roll = (float)(_imu->euler.rawroll) * 0.85f;
-  const float   pitch = (float)(_imu->euler.rawpitch) * 0.85f;
+  const float   roll = (float)(_imu->euler.rawroll - _roll_start) * 0.85f;
+  const float   pitch = (float)(_imu->euler.rawpitch - _pitch_start) * 0.85f;
   const int32_t pw1 = limit((int32_t)roundf(roll), 500) + 1500;
   const int32_t pw2 = limit((int32_t)roundf(pitch), 500) + 1500;
 
@@ -175,6 +175,16 @@ FwResults LevellingPlatform::_initIMU() {
 
   // setup operation mode
   _imu->setmode(OPERATION_MODE_NDOF);
+
+  // get startup values
+  for(uint8_t idx = 0; idx < 10; idx++) {
+      _imu->get_angles();
+
+      // read angles
+      this->_roll_start = _imu->euler.rawroll;
+      this->_pitch_start = _imu->euler.rawpitch;
+      wait_ms(100);
+  }
 
     return FW_OK;
 }

@@ -45,7 +45,7 @@
 #define FW_IMU_UPDATE_RATE_MS     2
 #define FW_SERVO_UPDATE_RATE_MS   10
 
-#define FW_SERVO_MIN_DEV_MOVMT_THD  5
+#define FW_SERVO_MIN_DEV_MOVMT_THD 2
 
 /* Public functions ----------------------------------------------------------*/
 
@@ -108,6 +108,9 @@ class LevellingPlatform
   BNO055*           _imu;             //!< IMU - Inertial Mesaurement Unit
   PwmOut            _servo1;          //!< First servo
   PwmOut            _servo2;          //!< Second servo
+
+  int16_t           _roll_start;      //!< Value at startup
+  int16_t           _pitch_start;     //!< Value at startup
 
   bool              _vcp_available;   //!< VCP is available
   uint32_t          _tick_cnt;        //!< Tick counter
